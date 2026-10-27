@@ -1,0 +1,613 @@
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --verde-escuro: #073b2a;
+        --verde: #087443;
+        --verde-claro: #e8f5ec;
+
+        --amarelo: #ffdf38;
+        --azul: #087eae;
+        --branco: #ffffff;
+
+        --fundo: #f4f7f2;
+        --texto: #26352e;
+        --texto-suave: #5c6c63;
+
+        --sombra: 0 12px 35px rgba(14, 48, 31, 0.10);
+        --sombra-hover: 0 20px 45px rgba(14, 48, 31, 0.18);
+    }
+
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 25px;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--fundo);
+        color: var(--texto);
+        line-height: 1.8;
+        font-size: 16px;
+        overflow-wrap: break-word;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+
+    /* =========================================
+    2. CABEÇALHO
+    ========================================= */
+
+    header {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+
+        min-height: 480px;
+        padding: 85px 24px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+        color: var(--branco);
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(4, 43, 29, 0.94),
+                rgba(8, 116, 67, 0.78)
+            ),
+            url("IMGs/floresta-amazonica-343759751-1000x562.jpg");
+
+        background-size: cover;
+        background-position: center;
+
+        border-bottom: 7px solid var(--amarelo);
+    }
+
+    /* Brilho decorativo */
+
+    header::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+
+        width: 300px;
+        height: 300px;
+
+        right: -100px;
+        top: -120px;
+
+        border: 45px solid rgba(255, 223, 56, 0.12);
+        border-radius: 50%;
+    }
+
+    header h1 {
+        max-width: 1000px;
+        margin-bottom: 20px;
+
+        font-size: clamp(2.2rem, 5vw, 4.5rem);
+        line-height: 1.15;
+        letter-spacing: 2px;
+
+        font-weight: 900;
+        text-transform: uppercase;
+
+        text-shadow: 0 5px 20px rgba(0, 0, 0, 0.30);
+    }
+
+    header h1 span {
+        display: block;
+        color: var(--amarelo);
+    }
+
+    header > p {
+        max-width: 680px;
+        margin-bottom: 30px;
+
+        color: rgba(255, 255, 255, 0.92);
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        line-height: 1.7;
+    }
+
+    /* Botão de explorar */
+
+    .botao-explorar {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 14px 27px;
+
+        color: var(--verde-escuro);
+        background: var(--amarelo);
+
+        border: 2px solid var(--amarelo);
+        border-radius: 50px;
+
+        font-size: 1rem;
+        font-weight: 800;
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+
+        transition:
+            transform 0.25s ease,
+            background-color 0.25s ease,
+            box-shadow 0.25s ease;
+    }
+
+    .botao-explorar:hover {
+        background: var(--branco);
+        border-color: var(--branco);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    }
+
+    .botao-explorar:focus-visible {
+        outline: 3px solid var(--branco);
+        outline-offset: 5px;
+    }
+
+
+    /* =========================================
+    3. SEÇÃO PRINCIPAL
+    ========================================= */
+
+    main {
+        width: 100%;
+    }
+
+    section#Brasil {
+        width: min(1500px, 94%);
+        margin: 70px auto 85px;
+
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px;
+
+        align-items: stretch;
+    }
+
+    /* Título da seção */
+
+    #Brasil > h2 {
+        grid-column: 1 / -1;
+
+        color: var(--verde-escuro);
+        text-align: center;
+
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+        line-height: 1.25;
+        font-weight: 900;
+
+        margin-bottom: -18px;
+    }
+
+    /* Introdução */
+
+    #Brasil > .introducao {
+        grid-column: 1 / -1;
+
+        max-width: 700px;
+        margin: 0 auto 12px;
+
+        text-align: center;
+        color: var(--texto-suave);
+
+        font-size: 1.08rem;
+    }
+
+
+    /* =========================================
+    4. CARTÕES DAS CURIOSIDADES
+    ========================================= */
+
+    .curiosidade {
+        --cor-card: var(--verde);
+        --fundo-card: #e8f5ec;
+
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+
+        background: var(--branco);
+        border-radius: 22px;
+        overflow: hidden;
+
+        border: 1px solid rgba(20, 65, 40, 0.08);
+        border-top: 5px solid var(--cor-card);
+
+        box-shadow: var(--sombra);
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    .curiosidade:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--sombra-hover);
+    }
+
+    /* Imagens dos cartões */
+
+    .curiosidade > img {
+        width: 100%;
+        height: 235px;
+
+        object-fit: cover;
+        object-position: center;
+
+        background: #e1e9e1;
+
+        transition: transform 0.5s ease;
+    }
+
+    .curiosidade:hover > img {
+        transform: scale(1.035);
+    }
+
+    /* Área de texto */
+
+    .conteudo-card {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        padding: 25px 25px 28px;
+    }
+
+    .categoria {
+        display: inline-block;
+        align-self: flex-start;
+
+        margin-bottom: 14px;
+        padding: 5px 12px;
+
+        color: var(--cor-card);
+        background: var(--fundo-card);
+
+        border-radius: 50px;
+
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+
+    .curiosidade h3 {
+        margin-bottom: 17px;
+
+        color: #20392c;
+        font-size: 1.35rem;
+        line-height: 1.4;
+        font-weight: 800;
+    }
+
+    .curiosidade p {
+        margin-bottom: 16px;
+
+        color: #536158;
+        font-size: 0.96rem;
+        line-height: 1.85;
+    }
+
+    .curiosidade p:last-child {
+        margin-bottom: 0;
+    }
+
+
+    /* =========================================
+    5. CORES INDIVIDUAIS DOS CARTÕES
+    ========================================= */
+
+    /* 1 — Amazônia: verde floresta */
+
+    .curiosidade:nth-of-type(1) {
+        --cor-card: #167347;
+        --fundo-card: #e4f4e9;
+    }
+
+    /* 2 — Lençóis Maranhenses: azul das lagoas */
+
+    .curiosidade:nth-of-type(2) {
+        --cor-card: #087eae;
+        --fundo-card: #e2f4fb;
+    }
+
+    /* 3 — Pantanal: verde-água */
+
+    .curiosidade:nth-of-type(3) {
+        --cor-card: #168b78;
+        --fundo-card: #e0f5ef;
+    }
+
+    /* 4 — Brasília: azul e dourado */
+
+    .curiosidade:nth-of-type(4) {
+        --cor-card: #a77a12;
+        --fundo-card: #fff4cf;
+    }
+
+    /* 5 — Carnaval: cores vibrantes */
+
+    .curiosidade:nth-of-type(5) {
+        --cor-card: #a23ba9;
+        --fundo-card: #f9e8fa;
+    }
+
+
+    /* =========================================
+    6. DESTAQUE "VOCÊ SABIA?"
+    ========================================= */
+
+    .curiosidade .curiosidade-extra {
+        margin-top: auto;
+        margin-bottom: 0;
+
+        padding: 17px;
+
+        color: #34483b;
+        background: var(--fundo-card);
+
+        border-left: 4px solid var(--cor-card);
+        border-radius: 0 12px 12px 0;
+
+        font-size: 0.93rem;
+        line-height: 1.75;
+    }
+
+    .curiosidade-extra strong {
+        display: block;
+
+        margin-bottom: 5px;
+        color: var(--cor-card);
+
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+
+    /* =========================================
+    7. RODAPÉ
+    ========================================= */
+
+    footer {
+        padding: 35px 20px;
+
+        color: rgba(255, 255, 255, 0.88);
+        background: var(--verde-escuro);
+
+        text-align: center;
+        border-top: 5px solid var(--amarelo);
+    }
+
+    footer p {
+        font-size: 0.95rem;
+    }
+
+    footer strong {
+        color: var(--amarelo);
+    }
+
+
+    /* =========================================
+    8. TABLETS
+    ========================================= */
+
+    @media (max-width: 1050px) {
+        header {
+            min-height: 420px;
+            padding: 70px 25px;
+        }
+
+        section#Brasil {
+            width: 92%;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 23px;
+            margin: 55px auto 65px;
+        }
+
+        .curiosidade > img {
+            height: 220px;
+        }
+
+        .conteudo-card {
+            padding: 22px;
+        }
+
+        .curiosidade h3 {
+            font-size: 1.25rem;
+        }
+    }
+
+
+    /* =========================================
+    9. CELULARES
+    ========================================= */
+
+    @media (max-width: 600px) {
+        body {
+            font-size: 15px;
+        }
+
+        header {
+            min-height: 400px;
+            padding: 65px 20px;
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 9vw, 3rem);
+            letter-spacing: 0.5px;
+        }
+
+        header > p {
+            font-size: 1rem;
+        }
+
+        .botao-explorar {
+            padding: 12px 21px;
+            font-size: 0.94rem;
+        }
+
+        section#Brasil {
+            width: 91%;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin: 42px auto 55px;
+        }
+
+        #Brasil > h2 {
+            margin-bottom: -12px;
+            font-size: 1.85rem;
+        }
+
+        #Brasil > .introducao {
+            font-size: 0.98rem;
+            margin-bottom: 5px;
+        }
+
+        .curiosidade {
+            border-radius: 18px;
+        }
+
+        .curiosidade > img {
+            height: 230px;
+        }
+
+        .conteudo-card {
+            padding: 22px;
+        }
+
+        .curiosidade h3 {
+            font-size: 1.3rem;
+        }
+
+        .curiosidade p {
+            font-size: 0.94rem;
+            line-height: 1.8;
+        }
+    }
+
+
+    /* =========================================
+    10. CELULARES PEQUENOS
+    ========================================= */
+
+    @media (max-width: 380px) {
+        header {
+            padding: 50px 16px;
+        }
+
+        header h1 {
+            font-size: 1.85rem;
+        }
+
+        section#Brasil {
+            width: 93%;
+            gap: 20px;
+        }
+
+        .curiosidade > img {
+            height: 190px;
+        }
+
+        .conteudo-card {
+            padding: 18px;
+        }
+
+        .curiosidade h3 {
+            font-size: 1.18rem;
+        }
+    }
+
+
+    /* =========================================
+    11. ACESSIBILIDADE
+    ========================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
+    .footer {
+    color: #fff;
+    background: linear-gradient(135deg, #073b2a, #0b5c3d);
+    border-top: 5px solid #ffdf38;
+    text-align: center;
+}
+
+.footer-pessoal {
+    max-width: 700px;
+    margin: auto;
+    padding: 45px 20px;
+}
+
+.footer-pessoal h2 {
+    color: #ffdf38;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    margin-bottom: 12px;
+}
+
+.footer-pessoal h3 {
+    color: #ffdf38;
+    margin: 25px 0 12px;
+}
+
+.footer-descricao {
+    max-width: 550px;
+    margin: auto;
+    color: #dce9df;
+    line-height: 1.8;
+}
+
+.footer-contatos p {
+    margin: 10px 0;
+    overflow-wrap: anywhere;
+}
+
+.footer-contatos a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+}
+
+.footer-contatos a:hover {
+    color: #ffdf38;
+}
+
+.footer-base {
+    padding: 18px;
+    background: rgba(0, 0, 0, 0.18);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-base p {
+    color: #dce9df;
+    font-size: 0.85rem;
+    margin: 5px;
+}
